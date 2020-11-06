@@ -149,7 +149,7 @@ router.post("/", upload.single("fs"), async (req, res) => {
 });
 
 
-cron.schedule('0   0   9   ?   *   *   * ', async () => {
+cron.schedule('0   0   9   1-31   *   *   * ', async () => {
   const schedule = await Schedule.find();
   var scheduleObj = schedule.reduce(function (r, o) {
     var k = parseInt(o.lookBack);
@@ -529,7 +529,7 @@ gfs.files.find({ filename: drop.title }).toArray(function (err, files) {
 
         const csv = json2csvParser.parse(result);
 
-        const tracker = drop.tracking;
+        const tracker = drop.title;
         const dt = drop.date;
 
         const attachment2 = {
@@ -540,7 +540,7 @@ gfs.files.find({ filename: drop.title }).toArray(function (err, files) {
      const mailer = {
           title: "Daily Mail Drop",
           from: "NTE",
-          to: ["mforde@nattaxexperts.com", "mickeygray85@hotmail.com"],
+          to: ["mforde@nattaxexperts.com", "mickeygray85@hotmail.com","poakes@nattaxexperts.com"],
           subject: ` ${tracker} Daily Mail Drop `,
           attachments: [attachment1, attachment2],
           text: `Attached is the pdf and csv for the Direct Mail Campaign ${drop.title}. Thanks, NTE!`,
