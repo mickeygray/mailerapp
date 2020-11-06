@@ -10,10 +10,6 @@ const path = require("path");
 connectDB();
 app.use(cors());
 
-app.engine("handlebars", exphbs({ defaultLayout: "main" }));
-app.set("view engine", "handlebars");
-app.set("views", path.join(__dirname, "views"));
-//bodyparser
 
 app.use(bodyParser.json({ limit: "10mb", extended: true }));
 app.use(bodyParser.urlencoded({ limit: "10mb", extended: true }));
