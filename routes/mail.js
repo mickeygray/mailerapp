@@ -1,6 +1,6 @@
 const express = require("express");
 const router = express.Router();
-
+var cron = require('node-cron');
 const GridFsStorage = require("multer-gridfs-storage");
 const mongoose = require("mongoose");
 const crypto = require("crypto");
@@ -148,8 +148,8 @@ router.post("/", upload.single("fs"), async (req, res) => {
   res.json(mail);
 });
 
-router.post("/delivery", async (req, res) => {
 
+cron.schedule('0   0   9   ?   *   *   * ', async () => {
   const schedule = await Schedule.find();
   var scheduleObj = schedule.reduce(function (r, o) {
     var k = parseInt(o.lookBack);
@@ -553,6 +553,7 @@ gfs.files.find({ filename: drop.title }).toArray(function (err, files) {
 } 
 withForOf();
 });
+
 
 router.delete("/schedule/:id", async (req, res) => {
   try {
