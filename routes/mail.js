@@ -529,7 +529,7 @@ gfs.files.find({ filename: drop.title }).toArray(function (err, files) {
 
         const csv = json2csvParser.parse(result);
 
-        const tracker = drop.title;
+        const tracker = drop.tracking;
         const dt = drop.date;
 
         const attachment2 = {
@@ -543,7 +543,7 @@ gfs.files.find({ filename: drop.title }).toArray(function (err, files) {
           to: ["mforde@nattaxexperts.com", "mickeygray85@hotmail.com"],
           subject: ` ${tracker} Daily Mail Drop `,
           attachments: [attachment1, attachment2],
-          text: "THE FUTURE IS AT HAND MWAHAHAHA",
+          text: `Attached is the pdf and csv for the Direct Mail Campaign ${drop.title}. Thanks, NTE!`,
         };
 
     transporter.sendMail(mailer);  
